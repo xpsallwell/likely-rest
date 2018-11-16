@@ -1,0 +1,40 @@
+{
+"请求报文":{
+  "head":{
+    "uuid":"ac49df72ld4432i3843983fi39329g84",
+    "app_id":"CRM",
+    "reqTime":1542280727766,
+    "version":"1",
+    "sign_type":"MD5",
+    "sign":"对body的内容进行md5"
+  },
+  "body":{
+    "account":"ceshi3"
+  }
+},
+
+
+"返回报文":{
+  "head":{
+    "respTime":1542280989286,
+    "sign":"ac27c6515e727309c960570c69df7401",
+    "reqTime":1542280727766,
+    "uuid":"ac49df72ld4432i3843983fi39329g84",
+    "app_id":"CRM",
+    "version":"1",
+    "sign_type":"MD5"
+  },
+  "body":{
+    "realName":"李维",
+    "success":true,
+    "staffId":3,
+    "homeAddress":"这是一个地址"
+  }
+}
+,
+  "报错报文":{
+    "msg":"用户不存在",
+    "code":"2202",
+    "success":false
+  }
+}

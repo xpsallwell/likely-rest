@@ -1,0 +1,39 @@
+<root>
+<request>
+    <head>
+        <uuid>ac49df72ld4432i3843983fi39329g84</uuid>
+        <app_id>CRM</app_id>
+        <reqTime>1542280727766</reqTime>
+        <version>1</version>
+        <sign_type>MD5</sign_type>
+        <sign>对body的内容进行md5</sign>
+    </head>
+    <body>
+        <account>ceshi</account>
+    </body>
+</request>
+
+<response>
+<head>
+    <uuid>ac49df72ld4432i3843983fi39329g84</uuid>
+    <app_id>CRM</app_id>
+    <reqTime>1542280727766</reqTime>
+    <respTime>1542280989286</respTime>
+    <version>1</version>
+    <sign_type>MD5</sign_type>
+    <sign>ac27c6515e727309c960570c69df7401</sign>
+</head>
+<body>
+    <success>true</success>
+    <realName>李维</realName>
+    <staffId>3</staffId>
+    <homeAddress>这是一个地址</homeAddress>
+</body>
+</response>
+
+<response>
+    <success>false</success>
+    <code>2202</code>
+    <msg>用户不存在</msg>
+</response>
+</root>

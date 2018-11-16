@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xps.rest.dao.user.ISysStaffDao" >
+  <resultMap id="BaseResultMap" type="com.xps.rest.entity.user.SysStaff" >
+    <id column="STAFF_ID" property="staffId" jdbcType="BIGINT" />
+    <result column="NICK_NAME" property="nickName" jdbcType="VARCHAR" />
+    <result column="REAL_NAME" property="realName" jdbcType="VARCHAR" />
+    <result column="LOGIN_ACCOUNT" property="loginAccount" jdbcType="VARCHAR" />
+    <result column="PASSWORD" property="password" jdbcType="VARCHAR" />
+    <result column="SALT" property="salt" jdbcType="VARCHAR" />
+    <result column="ORG_ID" property="orgId" jdbcType="BIGINT" />
+    <result column="AREA_ID" property="areaId" jdbcType="BIGINT" />
+    <result column="SEX" property="sex" jdbcType="CHAR" />
+    <result column="AGE" property="age" jdbcType="SMALLINT" />
+    <result column="NATION_NAME" property="nationName" jdbcType="VARCHAR" />
+    <result column="MOBILE_PHONE" property="mobilePhone" jdbcType="VARCHAR" />
+    <result column="MOBILE_PHONE1" property="mobilePhone1" jdbcType="VARCHAR" />
+    <result column="TEL_NO" property="telNo" jdbcType="VARCHAR" />
+    <result column="EMAIL" property="email" jdbcType="VARCHAR" />
+    <result column="HOME_ADDRESS" property="homeAddress" jdbcType="VARCHAR" />
+    <result column="CERT_TYPE" property="certType" jdbcType="VARCHAR" />
+    <result column="CERT_NO" property="certNo" jdbcType="VARCHAR" />
+    <result column="DELETE_FLAG" property="deleteFlag" jdbcType="CHAR" />
+    <result column="CREATE_BY" property="createBy" jdbcType="VARCHAR" />
+    <result column="CREATE_DATE" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_BY" property="updateBy" jdbcType="VARCHAR" />
+    <result column="UPDATE_DATE" property="updateDate" jdbcType="TIMESTAMP" />
+    <result column="REMARK" property="remark" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    STAFF_ID, NICK_NAME, REAL_NAME, LOGIN_ACCOUNT, PASSWORD, SALT, ORG_ID, AREA_ID, SEX,
+    AGE, NATION_NAME, MOBILE_PHONE, MOBILE_PHONE1, TEL_NO, EMAIL, HOME_ADDRESS, CERT_TYPE,
+    CERT_NO, DELETE_FLAG, CREATE_BY, CREATE_DATE, UPDATE_BY, UPDATE_DATE, REMARK
+  </sql>
+  <select id="querySysStaffInfo" resultMap="BaseResultMap" parameterType="sysStaff" >
+    select
+    <include refid="Base_Column_List" />
+    from T_SYSTEM_STAFF
+    <where>
+      <if test="staffId != null">
+        STAFF_ID = #{staffId,jdbcType=DECIMAL}
+      </if>
+      <if test="loginAccount != null">
+        AND LOGIN_ACCOUNT = #{loginAccount,jdbcType=VARCHAR}
+      </if>
+    </where>
+    LIMIT 0, 1
+  </select>
+  <delete id="deleteById" parameterType="java.lang.Long" >
+    delete from T_SYSTEM_STAFF
+    where STAFF_ID = #{staffId,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="sysStaff" useGeneratedKeys="true" keyProperty="staffId">
+    insert into t_system_staff (STAFF_ID, NICK_NAME, REAL_NAME,
+      LOGIN_ACCOUNT, PASSWORD, SALT,
+      ORG_ID, AREA_ID, SEX, AGE,
+      NATION_NAME, MOBILE_PHONE, MOBILE_PHONE1,
+      TEL_NO, EMAIL, HOME_ADDRESS,
+      CERT_TYPE, CERT_NO, DELETE_FLAG,
+      CREATE_BY, CREATE_DATE, UPDATE_BY,
+      UPDATE_DATE, REMARK)
+    values (#{staffId,jdbcType=BIGINT}, #{nickName,jdbcType=VARCHAR}, #{realName,jdbcType=VARCHAR},
+      #{loginAccount,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{salt,jdbcType=VARCHAR},
+      #{orgId,jdbcType=BIGINT}, #{areaId,jdbcType=BIGINT}, #{sex,jdbcType=CHAR}, #{age,jdbcType=SMALLINT},
+      #{nationName,jdbcType=VARCHAR}, #{mobilePhone,jdbcType=VARCHAR}, #{mobilePhone1,jdbcType=VARCHAR},
+      #{telNo,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{homeAddress,jdbcType=VARCHAR},
+      #{certType,jdbcType=VARCHAR}, #{certNo,jdbcType=VARCHAR}, #{deleteFlag,jdbcType=CHAR},
+      #{createBy,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, #{updateBy,jdbcType=VARCHAR},
+      #{updateDate,jdbcType=TIMESTAMP}, #{remark,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateById" parameterType="sysStaff" >
+    update t_system_staff
+    <set >
+      <if test="nickName != null" >
+        NICK_NAME = #{nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="realName != null" >
+        REAL_NAME = #{realName,jdbcType=VARCHAR},
+      </if>
+      <if test="loginAccount != null" >
+        LOGIN_ACCOUNT = #{loginAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        PASSWORD = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="salt != null" >
+        SALT = #{salt,jdbcType=VARCHAR},
+      </if>
+      <if test="orgId != null" >
+        ORG_ID = #{orgId,jdbcType=BIGINT},
+      </if>
+      <if test="areaId != null" >
+        AREA_ID = #{areaId,jdbcType=BIGINT},
+      </if>
+      <if test="sex != null" >
+        SEX = #{sex,jdbcType=CHAR},
+      </if>
+      <if test="age != null" >
+        AGE = #{age,jdbcType=SMALLINT},
+      </if>
+      <if test="nationName != null" >
+        NATION_NAME = #{nationName,jdbcType=VARCHAR},
+      </if>
+      <if test="mobilePhone != null" >
+        MOBILE_PHONE = #{mobilePhone,jdbcType=VARCHAR},
+      </if>
+      <if test="mobilePhone1 != null" >
+        MOBILE_PHONE1 = #{mobilePhone1,jdbcType=VARCHAR},
+      </if>
+      <if test="telNo != null" >
+        TEL_NO = #{telNo,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        EMAIL = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="homeAddress != null" >
+        HOME_ADDRESS = #{homeAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="certType != null" >
+        CERT_TYPE = #{certType,jdbcType=VARCHAR},
+      </if>
+      <if test="certNo != null" >
+        CERT_NO = #{certNo,jdbcType=VARCHAR},
+      </if>
+      <if test="deleteFlag != null" >
+        DELETE_FLAG = #{deleteFlag,jdbcType=CHAR},
+      </if>
+      <if test="createBy != null" >
+        CREATE_BY = #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        CREATE_DATE = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null" >
+        UPDATE_BY = #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDate != null" >
+        UPDATE_DATE = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null" >
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where STAFF_ID = #{staffId,jdbcType=BIGINT}
+  </update>
+
+
+  <select id="querySysStaffInfoAsPage" resultType="hashMap" parameterType="hashMap"  >
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM T_SYSTEM_STAFF STF
+    <where>
+      <if test="staffId != null">
+        AND STF.STAFF_ID = #{staffId,jdbcType=DECIMAL}
+      </if>
+      <if test="loginAccount != null">
+        AND STF.LOGIN_ACCOUNT = #{loginAccount,jdbcType=VARCHAR}
+      </if>
+      <if test="nickName != null">
+        AND STF.NICK_NAME like "%"#{nickName}"%"
+      </if>
+      <if test="realName != null">
+        AND STF.REAL_NAME like "%"#{realName}"%"
+      </if>
+    </where>
+  </select>
+
+</mapper>

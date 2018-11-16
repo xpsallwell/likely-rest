@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+         id="msp" version="2.5">
+  <display-name>Archetype Created Web Application</display-name>
+  <context-param>
+    <param-name>contextConfigLocation</param-name>
+    <param-value>
+      classpath:spring/spring-servlet.xml
+    </param-value>
+  </context-param>
+
+  <filter>
+    <filter-name>CharacterEncodingFilter</filter-name>
+    <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+    <init-param>
+      <param-name>encoding</param-name>
+      <param-value>utf-8</param-value>
+    </init-param>
+    <init-param>
+      <param-name>forceEncoding</param-name>
+      <param-value>true</param-value>
+    </init-param>
+  </filter>
+  <filter-mapping>
+    <filter-name>CharacterEncodingFilter</filter-name>
+    <servlet-name>resteasy-servlet</servlet-name>
+  </filter-mapping>
+  <!--BizzBeanService服务所在的包，可以多个用逗号隔开，LoadBizBeanListener中使用-->
+  <context-param>
+    <param-name>ws.packages</param-name>
+    <param-value>com.xps.rest.ws.http</param-value>
+  </context-param>
+  <!--restService服务所在的包,AOPApplication中使用-->
+  <context-param>
+    <param-name>rest.service.package</param-name>
+    <param-value>com.xps.rest.ws.http</param-value>
+  </context-param>
+  <listener>
+    <listener-class>com.xps.rest.listener.LoadBizBeanListener</listener-class>
+  </listener>
+  <context-param>
+    <param-name>resteasy.servlet.mapping.prefix</param-name>
+    <param-value>/services</param-value>
+  </context-param>
+  <listener>
+    <listener-class>org.jboss.resteasy.plugins.server.servlet.ResteasyBootstrap</listener-class>
+  </listener>
+  <listener>
+    <listener-class>org.jboss.resteasy.plugins.spring.SpringContextLoaderListener</listener-class>
+  </listener>
+  <servlet>
+    <servlet-name>resteasy-servlet</servlet-name>
+    <servlet-class>org.jboss.resteasy.plugins.server.servlet.HttpServletDispatcher</servlet-class>
+    <init-param>
+      <param-name>javax.ws.rs.Application</param-name>
+      <param-value>com.xps.rest.listener.AOPApplication</param-value>
+    </init-param>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>resteasy-servlet</servlet-name>
+    <url-pattern>/services/*</url-pattern>
+  </servlet-mapping>
+  <listener>
+    <listener-class>org.springframework.web.util.IntrospectorCleanupListener</listener-class>
+  </listener>
+  <welcome-file-list>
+    <welcome-file>/index.html</welcome-file>
+  </welcome-file-list>
+</web-app>
